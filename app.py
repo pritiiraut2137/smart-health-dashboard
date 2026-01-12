@@ -1,23 +1,13 @@
 from flask import Flask, request, jsonify
-import numpy as np
-import pickle
+import numpy as np, pickle
 
 app = Flask(__name__)
-model = pickle.load(open("model.pkl", "rb"))
+model = pickle.load(open("model.pkl","rb"))
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    data = request.json
-    features = np.array([[ 
-        data["age"], 
-        data["bmi"], 
-        data["bp"], 
-        data["glucose"], 
-        data["heart_rate"] 
-    ]])
-    
-    prediction = model.predict(features)[0]
-    return jsonify({"risk": int(prediction)})
+    d = request.json
+    X = np.array([[d["age"], d["bmi"], d["bp"], d["glucose"], d["heart_rate"]]])
+    return jsonify({"risk": int(model.predict(X)[0])})
 
-if __name__ == "__main__":
-    app.run(debug=True)
+app.run(port=5000)
