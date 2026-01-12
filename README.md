@@ -1,13 +1,15 @@
-# HealthInsight
+# HealthRisk Predictor
 
-A minimal health dashboard with Machine Learning integration.
+Technologies used:
+- Java (Eclipse)
+- JDBC + MySQL
+- Python (Machine Learning)
 
-## Features
-- Health risk prediction using ML
-- Flask API
-- Simple frontend dashboard
+Flow:
+Java → Python ML → Java → MySQL
 
-## Run
-1. python train.py
-2. python app.py
-3. Open index.html
+Steps:
+1. Run database.sql in MySQL
+2. python train.py
+3. python app.py
+4. Run HealthApp.java in Eclipse
